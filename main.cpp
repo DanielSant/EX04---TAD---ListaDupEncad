@@ -24,6 +24,7 @@ int main()
             case INSEREFINAL:
                 break;
             case REMOVEINICIO:
+                removeInicio(lista);
                 break;
             case REMOVEFINAL:
                 break;

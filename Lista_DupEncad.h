@@ -112,6 +112,28 @@ void insereInicio(TLista& lista, TInfo item)
     free(aux);
 }
 
+void removeInicio(TLista& lista)
+{
+    if(vazia(lista))
+    {
+        cout << "\n ERRO: A lista está vazia.\n";
+        getch();
+    }
+    else
+    {
+        apontador p = lista.primeiro->proximo;
+        cout << "\n Elemento removido = " << p->item.chave << endl;
+        Sleep(500);
+        lista.primeiro->proximo = p->proximo;
+        if(lista.primeiro->proximo == NULL)
+            lista.ultimo = lista.primeiro;
+        else
+            p->proximo->anterior = NULL;
+
+        free(p);
+    }
+}
+
 bool vazia(TLista& lista)
 {
     if(lista.primeiro->proximo == NULL)
