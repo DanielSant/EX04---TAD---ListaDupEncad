@@ -49,15 +49,20 @@ void removeInicio (TLista& lista);
 void removeFinal (TLista& lista);
 void pesquisaRemove (TLista& lista, TInfo item);
 void imprime (TLista& lista);
-opcoes menu();
+opcoes menu (TLista& lista);
+void setDados (TInfo& item);
+bool vazia (TLista& lista);
+void imprimeContrario(TLista& lista);
 // --------------------------------
 
 // Funções ------------------------
 
-opcoes menu ()
+opcoes menu (TLista& lista)
 {
     int o;
     clrscr();
+    imprime(lista);
+    imprimeContrario(lista);
     cout << "\n Menu: " << endl
          << " 1 - Insere no Início\n"
          << " 2 - Insere na Posição\n"
@@ -80,9 +85,73 @@ void cria(TLista& lista)
     lista.primeiro = (apontador) malloc(sizeof(struct nodoLista));
     lista.ultimo = lista.primeiro;
     lista.primeiro->proximo = NULL;
-    lista.ultimo->anterior = NULL;
+    lista.primeiro->anterior = NULL;
 }
 
+void setDados(TInfo& item)
+{
+    cout << "\n Informe o código: ";
+    cin >> item.chave;
+}
 
+void insereInicio(TLista& lista, TInfo item)
+{
+    apontador p = (apontador) malloc(sizeof(struct nodoLista));
+    apontador aux;
+    p->item = item;
+    p->anterior = NULL;
+    p->proximo = lista.primeiro->proximo; // Primeiro nodoLista
+    aux->proximo = lista.primeiro->proximo;
+    lista.primeiro->proximo = p;
+
+    if (p->proximo == NULL)
+        lista.ultimo = p;
+    else
+        aux->proximo->anterior = p;
+
+    free(aux);
+}
+
+bool vazia(TLista& lista)
+{
+    if(lista.primeiro->proximo == NULL)
+        return true;
+    else
+        return false;
+}
+
+void imprime(TLista& lista)
+{
+    cout << " Itens na LISTA:\n";
+    if(vazia(lista))
+        cout << " A lista está vazia!\n";
+    else
+    {
+        apontador aux = lista.primeiro->proximo;
+        while(aux != NULL)
+        {
+            cout << " " << aux->item.chave;
+            aux = aux->proximo;
+        }
+        cout << endl;
+    }
+}
+
+void imprimeContrario(TLista& lista)
+{
+    cout << "\n Itens na LISTA INVERTIDA:\n";
+    if(vazia(lista))
+        cout << " A lista está vazia!\n";
+    else
+    {
+        apontador aux = lista.ultimo;
+        while(aux != NULL)
+        {
+            cout << " " << aux->item.chave;
+            aux = aux->anterior;
+        }
+        cout << endl;
+    }
+}
 
 #endif // LISTA_DUPENCAD_H_INCLUDED

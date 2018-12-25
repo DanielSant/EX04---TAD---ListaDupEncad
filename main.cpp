@@ -7,18 +7,17 @@ int main()
     setlocale(LC_ALL, "portuguese");
     opcoes opc;
     TLista lista;
-    //TInfo item;
+    TInfo item;
 
     cria(lista);
 
-    while ((opc = menu()) != FINALIZAR)
+    while ((opc = menu(lista)) != FINALIZAR)
     {
         switch (opc)
         {
             case INSEREINICIO:
-                //insereInicio(lista, item);
-                cout << " Funfa";
-                getch();
+                setDados(item);
+                insereInicio(lista, item);
                 break;
             case INSEREPOSICAO:
                 break;
