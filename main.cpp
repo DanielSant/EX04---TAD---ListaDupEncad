@@ -29,6 +29,7 @@ int main()
                 removeInicio(lista);
                 break;
             case REMOVEFINAL:
+                removeFinal(lista);
                 break;
             case PESQUISAREMOVE:
                 break;

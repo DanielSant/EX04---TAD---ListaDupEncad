@@ -123,7 +123,7 @@ void removeInicio(TLista& lista)
     {
         apontador p = lista.primeiro->proximo;
         cout << "\n Elemento removido = " << p->item.chave << endl;
-        Sleep(500);
+        Sleep(800);
         lista.primeiro->proximo = p->proximo;
         if(lista.primeiro->proximo == NULL)
             lista.ultimo = lista.primeiro;
@@ -147,6 +147,33 @@ void insereFinal(TLista& lista, TInfo item)
 
     lista.ultimo->proximo = p;
     lista.ultimo = p;
+}
+
+void removeFinal(TLista& lista)
+{
+    if(vazia(lista))
+    {
+        cout << "\n ERRO: A lista está vazia! " << endl;
+        getch();
+    }
+    else
+    {
+        apontador p = lista.primeiro->proximo; // Pega o endereço do 1º nó
+        if(p->proximo == NULL) // Aqui já testa se há mais de 1 nodoLista
+        {
+            //lista.primeiro->proximo = NULL;
+            //lista.ultimo = lista.primeiro;
+            removeInicio(lista);
+        }
+        else
+        {
+            cout << "\n Elemento removido = " << lista.ultimo->item.chave << endl;
+            Sleep(800);
+            lista.ultimo = lista.ultimo->anterior;
+            lista.ultimo->proximo = NULL;
+        }
+        free(p);
+    }
 }
 
 bool vazia(TLista& lista)
