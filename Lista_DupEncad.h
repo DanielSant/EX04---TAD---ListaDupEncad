@@ -134,6 +134,21 @@ void removeInicio(TLista& lista)
     }
 }
 
+void insereFinal(TLista& lista, TInfo item)
+{
+    apontador p = (apontador) malloc(sizeof(struct nodoLista));
+    p->item = item;
+    p->proximo = NULL;
+
+    if(vazia(lista))
+        p->anterior = lista.ultimo->proximo;
+    else
+        p->anterior = lista.ultimo;
+
+    lista.ultimo->proximo = p;
+    lista.ultimo = p;
+}
+
 bool vazia(TLista& lista)
 {
     if(lista.primeiro->proximo == NULL)

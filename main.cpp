@@ -22,6 +22,8 @@ int main()
             case INSEREPOSICAO:
                 break;
             case INSEREFINAL:
+                setDados(item);
+                insereFinal(lista, item);
                 break;
             case REMOVEINICIO:
                 removeInicio(lista);
