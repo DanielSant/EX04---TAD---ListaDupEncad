@@ -15,29 +15,41 @@ int main()
     {
         switch (opc)
         {
-            case INSEREINICIO:
-                setDados(item);
-                insereInicio(lista, item);
-                break;
-            case INSEREPOSICAO:
-                break;
-            case INSEREFINAL:
-                setDados(item);
-                insereFinal(lista, item);
-                break;
-            case REMOVEINICIO:
-                removeInicio(lista);
-                break;
-            case REMOVEFINAL:
-                removeFinal(lista);
-                break;
-            case PESQUISAREMOVE:
-                break;
-            case IMPRIME:
-                break;
-            default:
-                cout << " Opção inválida!\n";
-                Sleep(1000);
+        case INSEREINICIO:
+            setDados(item);
+            insereInicio(lista, item);
+            break;
+
+        case INSEREPOSICAO:
+            break;
+
+        case INSEREFINAL:
+            setDados(item);
+            insereFinal(lista, item);
+            break;
+
+        case REMOVEINICIO:
+            removeInicio(lista);
+            break;
+
+        case REMOVEFINAL:
+            removeFinal(lista);
+            break;
+
+        case PESQUISAREMOVE:
+            break;
+
+        case IMPRIME:
+            cout << endl;
+            imprime(lista);
+            Sleep(800);
+            imprimeContrario(lista);
+            Sleep(5000);
+            break;
+
+        default:
+            cout << " Opção inválida!\n";
+            Sleep(1000);
         }
     }
 
