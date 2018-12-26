@@ -42,8 +42,8 @@ enum opcoes
 // Protótipos ---------------------
 
 void cria (TLista& lista);
+void inserePosicao (TLista& lista, int pos, TInfo item);
 void insereInicio (TLista& lista, TInfo item);
-void inserePosicao (TLista& lista, int p, TInfo item);
 void insereFinal (TLista& lista, TInfo item);
 void removeInicio (TLista& lista);
 void removeFinal (TLista& lista);
@@ -51,6 +51,7 @@ void pesquisaRemove (TLista& lista, TInfo item);
 void imprime (TLista& lista);
 opcoes menu (TLista& lista);
 void setDados (TInfo& item);
+void setPosicao(int& pos);
 bool vazia (TLista& lista);
 void imprimeContrario(TLista& lista);
 // --------------------------------
@@ -92,6 +93,17 @@ void setDados(TInfo& item)
 {
     cout << "\n Informe o código: ";
     cin >> item.chave;
+}
+
+void setPosicao(int& pos)
+{
+    cout << "\n Informe a posição: ";
+    cin >> pos;
+}
+
+bool vazia(TLista& lista)
+{
+    return lista.primeiro == lista.ultimo ? true : false;
 }
 
 void insereInicio(TLista& lista, TInfo item)
@@ -176,12 +188,42 @@ void removeFinal(TLista& lista)
     }
 }
 
-bool vazia(TLista& lista)
+void inserePosicao(TLista& lista, int pos, TInfo item)
 {
-    if(lista.primeiro->proximo == NULL)
-        return true;
+    if(pos == 1)
+    {
+        fflush(stdin);
+        insereInicio(lista, item);
+    }
     else
-        return false;
+    {
+        apontador aux = lista.primeiro->proximo;
+        int i = 1;
+        while((i < pos-1) && (aux != NULL))
+        {
+            i++;
+            aux = aux->proximo;
+        }
+
+        if((aux == NULL) || (pos  < 1))
+        {
+            cout << "\n Erro: Posição não existe!" << endl;
+            getch();
+        }
+        else
+        {
+            apontador p = (apontador) malloc(sizeof(struct nodoLista));
+            p->item = item;
+            p->proximo = aux->proximo;
+            p->anterior = aux;
+            aux->proximo = p;
+
+            if(p->proximo == NULL)
+                lista.ultimo = p;
+            else
+                p->proximo->anterior = p;
+        }
+    }
 }
 
 void imprime(TLista& lista)
@@ -217,7 +259,5 @@ void imprimeContrario(TLista& lista)
         cout << endl;
     }
 }
-
-
 
 #endif // LISTA_DUPENCAD_H_INCLUDED

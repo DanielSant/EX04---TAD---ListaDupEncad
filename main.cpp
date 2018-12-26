@@ -5,6 +5,7 @@
 int main()
 {
     setlocale(LC_ALL, "portuguese");
+
     opcoes opc;
     TLista lista;
     TInfo item;
@@ -17,10 +18,15 @@ int main()
         {
         case INSEREINICIO:
             setDados(item);
+            fflush(stdin);
             insereInicio(lista, item);
             break;
 
         case INSEREPOSICAO:
+            int pos;
+            setDados(item);
+            setPosicao(pos);
+            inserePosicao(lista, pos, item);
             break;
 
         case INSEREFINAL:
@@ -37,6 +43,7 @@ int main()
             break;
 
         case PESQUISAREMOVE:
+
             break;
 
         case IMPRIME:
