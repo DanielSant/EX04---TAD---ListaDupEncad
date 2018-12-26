@@ -43,7 +43,8 @@ int main()
             break;
 
         case PESQUISAREMOVE:
-
+            setDados(item);
+            pesquisaRemove(lista, item);
             break;
 
         case IMPRIME:

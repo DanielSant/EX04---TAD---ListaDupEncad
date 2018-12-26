@@ -260,4 +260,36 @@ void imprimeContrario(TLista& lista)
     }
 }
 
+void pesquisaRemove(TLista& lista, TInfo item)
+{
+    if(vazia(lista))
+    {
+        cout << "\n Lista vazia, não há o que pesquisar!";
+        getch();
+    }
+    else
+    {
+        if(lista.primeiro->proximo->item.chave == item.chave)
+            removeInicio(lista);
+        else if(lista.ultimo->item.chave == item.chave)
+            removeFinal(lista);
+        else
+        {
+            apontador aux = lista.primeiro->proximo;
+            while((aux->item.chave != item.chave) && (aux != NULL))
+                aux = aux->proximo;
+
+            cout << "\n Elemento removido = " << aux->item.chave << endl;
+            getch();
+            if(aux->proximo == NULL)
+                lista.ultimo = aux;
+            else
+            {
+                aux->anterior->proximo = aux->proximo;
+                aux->proximo->anterior = aux->anterior;
+            }
+        }
+    }
+}
+
 #endif // LISTA_DUPENCAD_H_INCLUDED
