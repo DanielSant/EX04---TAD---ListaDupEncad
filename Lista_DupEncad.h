@@ -275,19 +275,28 @@ void pesquisaRemove(TLista& lista, TInfo item)
             removeFinal(lista);
         else
         {
-            apontador aux = lista.primeiro->proximo;
-            while((aux->item.chave != item.chave) && (aux != NULL))
+            apontador aux = lista.primeiro;
+            while((aux->item.chave != item.chave) && (aux->proximo != NULL))
                 aux = aux->proximo;
 
-            cout << "\n Elemento removido = " << aux->item.chave << endl;
-            getch();
             if(aux->proximo == NULL)
-                lista.ultimo = aux;
+            {
+                cout << "\n Elemento não encontrado!";
+                getch();
+            }
             else
             {
-                aux->anterior->proximo = aux->proximo;
-                aux->proximo->anterior = aux->anterior;
+                cout << "\n Elemento removido = " << aux->item.chave << endl;
+                getch();
+                if(aux->proximo == NULL)
+                    lista.ultimo = aux;
+                else
+                {
+                    aux->anterior->proximo = aux->proximo;
+                    aux->proximo->anterior = aux->anterior;
+                }
             }
+
         }
     }
 }
