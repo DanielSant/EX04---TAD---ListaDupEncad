@@ -240,6 +240,7 @@ void imprime(TLista& lista)
             aux = aux->proximo;
         }
         cout << endl;
+        free(aux);
     }
 }
 
@@ -257,6 +258,7 @@ void imprimeContrario(TLista& lista)
             aux = aux->anterior;
         }
         cout << endl;
+        free(aux);
     }
 }
 
