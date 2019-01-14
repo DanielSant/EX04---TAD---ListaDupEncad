@@ -153,7 +153,7 @@ void insereFinal(TLista& lista, TInfo item)
     p->proximo = NULL;
 
     if(vazia(lista))
-        p->anterior = lista.ultimo->proximo;
+        p->anterior = NULL;//lista.ultimo->proximo;
     else
         p->anterior = lista.ultimo;
 
