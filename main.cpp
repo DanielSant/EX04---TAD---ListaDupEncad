@@ -8,7 +8,7 @@ int main()
 
     opcoes opc;
     TLista lista;
-    TInfo item;
+    TInfo item; // 20
 
     cria(lista);
 

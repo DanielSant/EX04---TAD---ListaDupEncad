@@ -92,7 +92,7 @@ void cria(TLista& lista)
 void setDados(TInfo& item)
 {
     cout << "\n Informe o código: ";
-    cin >> item.chave;
+    cin >> item.chave; // 20
 }
 
 void setPosicao(int& pos)
@@ -109,19 +109,16 @@ bool vazia(TLista& lista)
 void insereInicio(TLista& lista, TInfo item)
 {
     apontador p = (apontador) malloc(sizeof(struct nodoLista));
-    apontador aux;
     p->item = item;
     p->anterior = NULL;
     p->proximo = lista.primeiro->proximo; // Primeiro nodoLista
-    aux->proximo = lista.primeiro->proximo;
-    lista.primeiro->proximo = p;
 
     if (p->proximo == NULL)
         lista.ultimo = p;
     else
-        aux->proximo->anterior = p;
+        lista.primeiro->proximo->anterior = p;
 
-    free(aux);
+    lista.primeiro->proximo = p;
 }
 
 void removeInicio(TLista& lista)
@@ -137,10 +134,12 @@ void removeInicio(TLista& lista)
         cout << "\n Elemento removido = " << p->item.chave << endl;
         Sleep(800);
         lista.primeiro->proximo = p->proximo;
+
         if(lista.primeiro->proximo == NULL)
             lista.ultimo = lista.primeiro;
         else
-            p->proximo->anterior = NULL;
+            //p->proximo->anterior = NULL;
+            lista.primeiro->proximo->anterior = NULL;
 
         free(p);
     }
@@ -182,6 +181,7 @@ void removeFinal(TLista& lista)
             cout << "\n Elemento removido = " << lista.ultimo->item.chave << endl;
             Sleep(800);
             lista.ultimo = lista.ultimo->anterior;
+            // add um aux para otimizar;
             lista.ultimo->proximo = NULL;
         }
         free(p);
@@ -296,9 +296,10 @@ void pesquisaRemove(TLista& lista, TInfo item)
                 {
                     aux->anterior->proximo = aux->proximo;
                     aux->proximo->anterior = aux->anterior;
+
                 }
             }
-
+            free(aux);
         }
     }
 }
